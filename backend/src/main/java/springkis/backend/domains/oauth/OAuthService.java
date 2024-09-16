@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import springkis.backend.common.webClient.WebClientUtil;
+import springkis.backend.domains.oauth.dto.request.IssueAccessTokenRequest;
 import springkis.backend.domains.oauth.dto.request.IssueRealTimeWebSocketAccessTokenRequest;
+import springkis.backend.domains.oauth.dto.response.IssueAccessTokenResponse;
 import springkis.backend.domains.oauth.dto.response.IssueRealTimeWebSocketAccessTokenResponse;
 
 @Service
@@ -24,6 +26,17 @@ public class OAuthService {
 			url,
 			request,
 			IssueRealTimeWebSocketAccessTokenResponse.class
+		);
+	}
+
+	public IssueAccessTokenResponse issueAccessToken(final IssueAccessTokenRequest request) {
+		final String url ="/oauth2/tokenP";
+
+		return webClientUtil.postFromKis(
+			new HashMap<>(),
+			url,
+			request,
+			IssueAccessTokenResponse.class
 		);
 	}
 }

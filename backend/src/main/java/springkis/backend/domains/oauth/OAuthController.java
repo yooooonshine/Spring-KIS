@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import springkis.backend.domains.oauth.dto.request.IssueAccessTokenRequest;
 import springkis.backend.domains.oauth.dto.request.IssueRealTimeWebSocketAccessTokenRequest;
+import springkis.backend.domains.oauth.dto.response.IssueAccessTokenResponse;
 import springkis.backend.domains.oauth.dto.response.IssueRealTimeWebSocketAccessTokenResponse;
 
 @RestController
@@ -19,8 +21,15 @@ public class OAuthController {
 	private final OAuthService oAuthService;
 
 	@PostMapping("/real-time-websocket-access-token")
-	public ResponseEntity<?> issueRealTimeWebSocketAccessToken(final @RequestBody @Valid IssueRealTimeWebSocketAccessTokenRequest request) {
+	public ResponseEntity<IssueRealTimeWebSocketAccessTokenResponse> issueRealTimeWebSocketAccessToken(final @RequestBody @Valid IssueRealTimeWebSocketAccessTokenRequest request) {
 		final IssueRealTimeWebSocketAccessTokenResponse response = oAuthService.issueRealTimeWebSocketAccessToken(request);
+
+		return ResponseEntity.ok(response);
+	}
+
+	@PostMapping("/access-token")
+	public ResponseEntity<IssueAccessTokenResponse> issueAccessToken(final @RequestBody @Valid IssueAccessTokenRequest request) {
+		final IssueAccessTokenResponse response = oAuthService.issueAccessToken(request);
 
 		return ResponseEntity.ok(response);
 	}
