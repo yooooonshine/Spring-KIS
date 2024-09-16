@@ -24,11 +24,11 @@ import springkis.backend.common.dto.ErrorResponse;
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-	@ExceptionHandler(CustomException.class)
-	public ResponseEntity<Object> handleCustomException(CustomException e) {
-		log.warn("handleApiException", e);
+	@ExceptionHandler(KisException.class)
+	public ResponseEntity<Object> handleKisException(KisException e) {
+		log.warn("handleKisException", e);
 
-		return makeErrorResponseEntity(e.getHttpStatus(), e.getMessage());
+		return makeErrorResponseEntity(e.getHttpStatus(), e.getData());
 	}
 
 	@ExceptionHandler(ApiException.class)
@@ -119,9 +119,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 			.body(ErrorResponse.of(errorCode, message));
 	}
 
-	private ResponseEntity<Object> makeErrorResponseEntity(HttpStatus httpStatus, String message) {
+	private ResponseEntity<Object> makeErrorResponseEntity(HttpStatus httpStatus, Object data) {
 		return ResponseEntity
 			.status(httpStatus)
-			.body(ErrorResponse.of(httpStatus, message));
+			.body(ErrorResponse.of(httpStatus, data));
 	}
 }

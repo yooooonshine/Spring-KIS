@@ -8,12 +8,12 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class CustomException extends RuntimeException{
+public class KisException extends RuntimeException{
 
 	private final HttpStatus httpStatus;
-	private final String message;
+	private final Object data;
 
-	public static CustomException from(HttpStatus httpStatus, String message) {
-		return new CustomException(httpStatus, message);
+	public static KisException from(HttpStatus httpStatus, Object data) {
+		return new KisException(httpStatus, data);
 	}
 }
