@@ -1,5 +1,7 @@
 package springkis.backend.domains.oauth.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,7 +9,9 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class IssueAccessTokenRequest {
-	private String grant_type;
+
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
+	private final String grant_type = "client_credentials";
 	private String appkey;
-	private String secretkey;
+	private String appsecret;
 }
