@@ -19,6 +19,7 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import lombok.extern.slf4j.Slf4j;
 import springkis.backend.common.dto.ErrorResponse;
+import springkis.backend.kisLibrary.exception.KisException;
 
 @Slf4j
 @RestControllerAdvice

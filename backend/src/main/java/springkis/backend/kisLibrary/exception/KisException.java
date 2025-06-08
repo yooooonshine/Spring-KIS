@@ -1,4 +1,4 @@
-package springkis.backend.common.exception;
+package springkis.backend.kisLibrary.exception;
 
 import org.springframework.http.HttpStatus;
 
